@@ -1,0 +1,38 @@
+old_versions:
+    enabled: true
+    motd:
+        first: '&cВы используете устаревший клиент!'
+        second: '&cЧто-бы войти, используйте - &71.12.x - 1.16.x'
+    error: 'Ошибка'
+    kick-reason: '&cСоединение сброшено, вы используете устаревший клиент!'
+    # Версия, начиная с которой можно зайти
+    # Полный список для ознакомления:
+    #   https://github.com/SpigotMC/BungeeCord/blob/master/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
+    whitelist: 'MINECRAFT_1_12'
+    icon:
+        enabled: true
+        name: 'old_version.png'
+maintenance:
+    enabled: false
+    motd:
+        first: '&aСервер находится на тех. обслуживании'
+        second: '&aПожалуйста, зайдите позднее.'
+    error: '&aОбслуживание'
+    kick-reason: '&cВы не можете войти во время тех. работ!'
+    admin-list: # Список тех, кому можно войти (Добавить игрока - /mnt add <Ник>, нужно право masstontools.use)
+        - Masston
+    icon:
+        enabled: true
+        name: 'maintenance.png'
+    command:
+        permission-denied: '&6MasstonTools &8| &cНет прав на выполнение этой команды!'
+        enabled: '&6MasstonTools &8| &fНа сервере был &aвключен&f режим технического обслуживания'
+        disabled: '&6MasstonTools &8| &fНа сервере был &cвыключен&f режим технического обслуживания'
+        added: '&6MasstonTools &8| &fВы добавили игрока &a{player}&f!'
+        removed: '&6MasstonTools &8| &fВы убрали игрока &c{player}&f!'
+        already-added: '&6MasstonTools &8| &fИгрок уже находится в списке'
+        already-removed: '&6MasstonTools &8| &fИгрока и так нет в списке'
+        help: 
+            - '&6MasstonTools &8| &fПомощь по &a/maintenance (/mnt, /обслуживание)&f:'
+            - '&8• &a/maintenance &2on&f/&coff &7- &fВкл./Выкл. режим обслуживания'
+            - '&8• &a/maintenance &2add&f/&cremove &7- &fДобавить/Убрать игрока из списка'
