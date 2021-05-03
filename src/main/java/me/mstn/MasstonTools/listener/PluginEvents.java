@@ -24,7 +24,7 @@ public class PluginEvents implements Listener {
 
     public PluginEvents() {
         configuration = Main.getConfig();
-        oldVersionImage = ImageUtil.loadImage("old_versions.png");
+        oldVersionImage = ImageUtil.loadImage("old_version.png");
         maintenanceImage = ImageUtil.loadImage("maintenance.png");
     }
 
@@ -41,8 +41,8 @@ public class PluginEvents implements Listener {
             }
         }
 
-        if (configuration.getBoolean("maintenance.enabled")) {
-            if (Maintenance.find(e.getConnection().getName())) {
+        if (Maintenance.isEnabled()) {
+            if (!Maintenance.find(e.getConnection().getName())) {
                 e.setCancelReason(new TextComponent(ChatColor.translateAlternateColorCodes(
                         '&', configuration.getString("maintenance.kick-reason")
                 )));
@@ -82,7 +82,7 @@ public class PluginEvents implements Listener {
             }
         }
 
-        if (configuration.getBoolean("maintenance.enabled")) {
+        if (Maintenance.isEnabled()) {
             vers.setName(ChatColor.translateAlternateColorCodes(
                     '&', configuration.getString("maintenance.error")
             ));

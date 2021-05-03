@@ -11,8 +11,8 @@ public class Maintenance {
     private static boolean enabled = false;
 
     public static void setEnabled(boolean to) {
-        saveStatus();
         enabled = to;
+        saveStatus();
     }
 
     public static boolean isEnabled() {

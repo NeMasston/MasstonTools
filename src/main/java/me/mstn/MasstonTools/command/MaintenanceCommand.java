@@ -94,7 +94,7 @@ public class MaintenanceCommand extends Command {
 
                     commandSender.sendMessage(new TextComponent(
                             ChatColor.translateAlternateColorCodes(
-                                    '&', configuration.getString("maintenance.messages.remove").replace("{player}", args[1])
+                                    '&', configuration.getString("maintenance.messages.removed").replace("{player}", args[1])
                             )
                     ));
 

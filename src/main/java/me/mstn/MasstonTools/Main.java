@@ -3,6 +3,7 @@ package me.mstn.MasstonTools;
 import me.mstn.MasstonTools.command.MaintenanceCommand;
 import me.mstn.MasstonTools.core.configuration.SimpleConfiguration;
 import me.mstn.MasstonTools.core.Maintenance;
+import me.mstn.MasstonTools.core.util.ProtocolUtil;
 import me.mstn.MasstonTools.listener.PluginEvents;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
@@ -32,6 +33,10 @@ public class Main extends Plugin {
 
         getProxy().getPluginManager().registerListener(this, new PluginEvents());
         getProxy().getPluginManager().registerCommand(this, new MaintenanceCommand());
+
+        if (!ProtocolUtil.checkValidVersion(configuration.getString("maintenance.whitelist"))) {
+            getLogger().severe("Версия в конфигурации указана неверно!");
+        }
     }
 
     public void onDisable() {
