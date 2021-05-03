@@ -24,8 +24,8 @@ public class PluginEvents implements Listener {
 
     public PluginEvents() {
         configuration = Main.getConfig();
-        oldVersionImage = ImageUtil.loadImage("old_version.png");
-        maintenanceImage = ImageUtil.loadImage("maintenance.png");
+        oldVersionImage = ImageUtil.loadImage(configuration.getString("old_versions.icon.name"));
+        maintenanceImage = ImageUtil.loadImage(configuration.getString("maintenance.icon.name"));
     }
 
     @EventHandler
