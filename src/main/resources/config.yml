@@ -24,7 +24,7 @@ maintenance:
     icon:
         enabled: true
         name: 'maintenance.png'
-    command:
+    messages:
         permission-denied: '&6MasstonTools &8| &cНет прав на выполнение этой команды!'
         enabled: '&6MasstonTools &8| &fНа сервере был &aвключен&f режим технического обслуживания'
         disabled: '&6MasstonTools &8| &fНа сервере был &cвыключен&f режим технического обслуживания'
