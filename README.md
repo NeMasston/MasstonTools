@@ -23,5 +23,7 @@
 ### Демонстрация работы
 ![Демонстрация работы плагина](https://mstn.me/images/example.jpg)
 
-### Автор
-[Masston ❤](https://vk.com/masston)
+### Автор плагина
+[Masston ❤](https://vk.com/masston) - Разработка
+
+#### Все права защищены палучаица &copy; 2021
