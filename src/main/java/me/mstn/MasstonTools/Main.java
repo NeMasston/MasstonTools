@@ -34,7 +34,7 @@ public class Main extends Plugin {
         getProxy().getPluginManager().registerListener(this, new PluginEvents());
         getProxy().getPluginManager().registerCommand(this, new MaintenanceCommand());
 
-        if (!ProtocolUtil.checkValidVersion(configuration.getString("maintenance.whitelist"))) {
+        if (!ProtocolUtil.checkValidVersion(configuration.getString("old_versions.whitelist"))) {
             getLogger().severe("Версия в конфигурации указана неверно!");
         }
     }
