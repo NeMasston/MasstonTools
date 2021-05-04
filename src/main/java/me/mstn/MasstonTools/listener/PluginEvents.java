@@ -30,21 +30,27 @@ public class PluginEvents implements Listener {
 
     @EventHandler
     public void on(PreLoginEvent e) {
+        String name = e.getConnection().getName();
+
         if (configuration.getBoolean("old_versions.enabled")) {
             int version = e.getConnection().getVersion();
 
             if (version < ProtocolUtil.getVersionId(configuration.getString("old_versions.whitelist"))) {
                 e.setCancelReason(new TextComponent(ChatColor.translateAlternateColorCodes(
                         '&', configuration.getString("old_versions.kick-reason")
+                                .replace("{player}", name)
+                                .replace("{newline}", "\n")
                 )));
                 e.setCancelled(true);
             }
         }
 
         if (Maintenance.isEnabled()) {
-            if (!Maintenance.find(e.getConnection().getName())) {
+            if (!Maintenance.find(name)) {
                 e.setCancelReason(new TextComponent(ChatColor.translateAlternateColorCodes(
                         '&', configuration.getString("maintenance.kick-reason")
+                                .replace("{player}", name)
+                                .replace("{newline}", "\n")
                 )));
                 e.setCancelled(true);
             }
