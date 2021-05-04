@@ -13,6 +13,7 @@ import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.event.EventHandler;
+import net.md_5.bungee.event.EventPriority;
 
 import java.awt.image.BufferedImage;
 
@@ -58,7 +59,7 @@ public class PluginEvents implements Listener {
 
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void on(ProxyPingEvent e) {
         ServerPing ping = e.getResponse();
         ServerPing.Protocol vers = ping.getVersion();
