@@ -19,10 +19,13 @@ public class MaintenanceCommand extends Command {
 
     @Override
     public void execute(CommandSender commandSender, String[] args) {
+        Configuration maintenance = configuration.getSection("maintenance");
+        Configuration messages = maintenance.getSection("messages");
+
         if (!commandSender.hasPermission("masstontools.use")) {
             commandSender.sendMessage(new TextComponent(
                     ChatColor.translateAlternateColorCodes(
-                            '&', configuration.getString("maintenance.messages.permission-denied")
+                            '&', messages.getString("permission-denied")
                     )
             ));
 
@@ -38,7 +41,7 @@ public class MaintenanceCommand extends Command {
 
                     commandSender.sendMessage(new TextComponent(
                             ChatColor.translateAlternateColorCodes(
-                                    '&', configuration.getString("maintenance.messages.enabled")
+                                    '&', messages.getString("enabled")
                             )
                     ));
 
@@ -48,7 +51,7 @@ public class MaintenanceCommand extends Command {
 
                     commandSender.sendMessage(new TextComponent(
                             ChatColor.translateAlternateColorCodes(
-                                    '&', configuration.getString("maintenance.messages.disabled")
+                                    '&', messages.getString("disabled")
                             )
                     ));
 
@@ -65,7 +68,7 @@ public class MaintenanceCommand extends Command {
                     if (!addUser) {
                         commandSender.sendMessage(new TextComponent(
                                 ChatColor.translateAlternateColorCodes(
-                                        '&', configuration.getString("maintenance.messages.already-added")
+                                        '&', messages.getString("already-added")
                                 )
                         ));
 
@@ -74,7 +77,7 @@ public class MaintenanceCommand extends Command {
 
                     commandSender.sendMessage(new TextComponent(
                             ChatColor.translateAlternateColorCodes(
-                                    '&', configuration.getString("maintenance.messages.added").replace("{player}", args[1])
+                                    '&', messages.getString("added").replace("{player}", args[1])
                             )
                     ));
 
@@ -85,7 +88,7 @@ public class MaintenanceCommand extends Command {
                     if (!removeUser) {
                         commandSender.sendMessage(new TextComponent(
                                 ChatColor.translateAlternateColorCodes(
-                                        '&', configuration.getString("maintenance.messages.already-removed")
+                                        '&', messages.getString("already-removed")
                                 )
                         ));
 
@@ -94,7 +97,7 @@ public class MaintenanceCommand extends Command {
 
                     commandSender.sendMessage(new TextComponent(
                             ChatColor.translateAlternateColorCodes(
-                                    '&', configuration.getString("maintenance.messages.removed").replace("{player}", args[1])
+                                    '&', messages.getString("removed").replace("{player}", args[1])
                             )
                     ));
 
@@ -103,7 +106,7 @@ public class MaintenanceCommand extends Command {
             }
         }
 
-        for (String helpLine : configuration.getStringList("maintenance.messages.help")) {
+        for (String helpLine : messages.getStringList("help")) {
             commandSender.sendMessage(new TextComponent(
                     ChatColor.translateAlternateColorCodes(
                             '&', helpLine

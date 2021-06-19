@@ -20,25 +20,43 @@ import java.awt.image.BufferedImage;
 public class PluginEvents implements Listener {
 
     private final Configuration configuration;
+
+    private final Configuration oldVersions;
+    private final Configuration motdSectionOldVersions;
+    private final Configuration iconSectionOldVersions;
+
+    private final Configuration maintenance;
+    private final Configuration motdSectionMaintenance;
+    private final Configuration iconSectionMaintenance;
+
     private final BufferedImage oldVersionImage;
     private final BufferedImage maintenanceImage;
 
     public PluginEvents() {
         configuration = Main.getConfig();
-        oldVersionImage = ImageUtil.loadImage(configuration.getString("old_versions.icon.name"));
-        maintenanceImage = ImageUtil.loadImage(configuration.getString("maintenance.icon.name"));
+
+        oldVersions = configuration.getSection("old_versions");
+        motdSectionOldVersions = oldVersions.getSection("motd");
+        iconSectionOldVersions = oldVersions.getSection("icon");
+
+        maintenance = configuration.getSection("maintenance");
+        motdSectionMaintenance = maintenance.getSection("motd");
+        iconSectionMaintenance = maintenance.getSection("icon");
+
+        oldVersionImage = ImageUtil.loadImage(iconSectionOldVersions.getString("name"));
+        maintenanceImage = ImageUtil.loadImage(iconSectionMaintenance.getString("name"));
     }
 
     @EventHandler
     public void on(PreLoginEvent e) {
         String name = e.getConnection().getName();
 
-        if (configuration.getBoolean("old_versions.enabled")) {
+        if (oldVersions.getBoolean("enabled")) {
             int version = e.getConnection().getVersion();
 
-            if (version < ProtocolUtil.getVersionId(configuration.getString("old_versions.whitelist"))) {
+            if (version < ProtocolUtil.getVersionId(oldVersions.getString("whitelist"))) {
                 e.setCancelReason(new TextComponent(ChatColor.translateAlternateColorCodes(
-                        '&', configuration.getString("old_versions.kick-reason")
+                        '&', oldVersions.getString("kick-reason")
                                 .replace("{player}", name)
                                 .replace("{newline}", "\n")
                 )));
@@ -49,7 +67,7 @@ public class PluginEvents implements Listener {
         if (Maintenance.isEnabled()) {
             if (!Maintenance.find(name)) {
                 e.setCancelReason(new TextComponent(ChatColor.translateAlternateColorCodes(
-                        '&', configuration.getString("maintenance.kick-reason")
+                        '&', maintenance.getString("kick-reason")
                                 .replace("{player}", name)
                                 .replace("{newline}", "\n")
                 )));
@@ -64,22 +82,23 @@ public class PluginEvents implements Listener {
         ServerPing ping = e.getResponse();
         ServerPing.Protocol vers = ping.getVersion();
 
-        if (configuration.getBoolean("old_versions.enabled")) {
+        if (oldVersions.getBoolean("enabled")) {
             int version = e.getConnection().getVersion();
 
-            if (version < ProtocolUtil.getVersionId(configuration.getString("old_versions.whitelist"))) {
+            if (version < ProtocolUtil.getVersionId(oldVersions.getString("whitelist"))) {
                 vers.setName(ChatColor.translateAlternateColorCodes(
-                        '&', configuration.getString("old_versions.error")
+                        '&', oldVersions.getString("error")
                 ));
+
                 vers.setProtocol(-1);
                 ping.setDescriptionComponent(new TextComponent(ChatColor.translateAlternateColorCodes(
-                        '&', configuration.getString("old_versions.motd.first") + "\n"
-                                + configuration.getString("old_versions.motd.second")
+                        '&', motdSectionOldVersions.getString("first") + "\n"
+                                + motdSectionOldVersions.getString("second")
                 )));
 
-                if (configuration.getBoolean("old_versions.icon.enabled") && oldVersionImage != null) {
+                if (iconSectionOldVersions.getBoolean("enabled") && oldVersionImage != null) {
                     if (oldVersionImage.getWidth() != 64 || oldVersionImage.getHeight() != 64) {
-                        throw new RuntimeException("Не удалось установить картинку \"old_version.png\", она должна иметь размер 64x64!");
+                        throw new RuntimeException("Failed to install picture \""+ oldVersionImage +"\", it must be 64x64!");
                     } else {
                         ping.setFavicon(Favicon.create(oldVersionImage));
                     }
@@ -91,19 +110,22 @@ public class PluginEvents implements Listener {
 
         if (Maintenance.isEnabled()) {
             vers.setName(ChatColor.translateAlternateColorCodes(
-                    '&', configuration.getString("maintenance.error")
+                    '&', maintenance.getString("error")
             ));
+
             vers.setProtocol(-1);
             ping.setDescriptionComponent(new TextComponent(ChatColor.translateAlternateColorCodes(
-                    '&', configuration.getString("maintenance.motd.first") + "\n"
-                            + configuration.getString("maintenance.motd.second")
+                    '&', motdSectionMaintenance.getString("first") + "\n"
+                            + motdSectionMaintenance.getString("second")
             )));
 
-            if (configuration.getBoolean("maintenance.icon.enabled") && maintenanceImage != null) {
+            if (iconSectionMaintenance.getBoolean("enabled") && maintenanceImage != null) {
                 if (maintenanceImage.getWidth() != 64 || maintenanceImage.getHeight() != 64) {
-                    throw new RuntimeException("Не удалось установить картинку \"maintenance.png\", она должна иметь размер 64x64!");
+                    throw new RuntimeException("Failed to install picture \""+ maintenanceImage +"\", it must be 64x64!");
                 } else {
-                    ping.setFavicon(Favicon.create(maintenanceImage));
+                    ping.setFavicon(
+                            Favicon.create(maintenanceImage)
+                    );
                 }
             }
 

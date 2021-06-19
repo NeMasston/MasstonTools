@@ -54,7 +54,7 @@ public class SimpleConfiguration {
                     .getProvider(YamlConfiguration.class)
                     .save(configuration, new File(Main.PATH, fileName));
         } catch (IOException e) {
-            throw new RuntimeException("Не удалось сохранить конфигурационный файл", e);
+            throw new RuntimeException("Failed to save config file.", e);
         }
     }
 
@@ -69,7 +69,7 @@ public class SimpleConfiguration {
                     .getProvider(YamlConfiguration.class)
                     .load(Main.PATH.toPath().resolve(fileName).toFile());
         } catch (IOException e) {
-            throw new RuntimeException("Не удалось перезагрузить конфигурационный файл", e);
+            throw new RuntimeException("Failed to reload config file.", e);
         }
     }
 
@@ -90,7 +90,7 @@ public class SimpleConfiguration {
                         .getProvider(YamlConfiguration.class)
                         .load(file);
             } catch (IOException e) {
-                throw new RuntimeException("Не удалось загрузить конфигурационный файл", e);
+                throw new RuntimeException("Failed to save config file.", e);
             }
         }
     }

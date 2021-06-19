@@ -35,12 +35,13 @@ public class Main extends Plugin {
         getProxy().getPluginManager().registerCommand(this, new MaintenanceCommand());
 
         if (!ProtocolUtil.checkValidVersion(configuration.getString("old_versions.whitelist"))) {
-            getLogger().severe("Версия в конфигурации указана неверно!");
+            getLogger().severe("The version in the configuration is incorrect!");
         }
     }
 
     public void onDisable() {
-
+        getProxy().getPluginManager().unregisterListeners(this);
+        getProxy().getPluginManager().unregisterCommands(this);
     }
 
     public static SimpleConfiguration getConfigurationManipulator() {

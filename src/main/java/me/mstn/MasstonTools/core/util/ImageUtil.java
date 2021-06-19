@@ -17,7 +17,7 @@ public class ImageUtil {
             File file = new File(pluginPath + fileName);
             img = ImageIO.read(file);
         } catch (IOException e) {
-            throw new RuntimeException("Не удалось получить изображение \"" + fileName + "\" или при его открытии возникла ошибка.", e);
+            throw new RuntimeException("An error occurred while downloading the file \"" + fileName + "\".", e);
         }
 
         return img;

@@ -2,7 +2,7 @@ old_versions:
     enabled: true
     motd:
         first: '&cВы используете устаревший клиент!'
-        second: '&cЧто-бы войти, используйте - &71.12.x - 1.16.x'
+        second: '&cЧто-бы войти, используйте - &71.12.x - 1.17.x'
     error: 'Ошибка'
     kick-reason: '&c{player}, соединение было сброшено, вы используете устаревшую версию клиента!{newline}{newline}&7www.site.ru'
     # Версия, начиная с которой можно зайти
@@ -19,7 +19,7 @@ maintenance:
         second: '&aПожалуйста, зайдите позднее.'
     error: '&aОбслуживание'
     kick-reason: '&c{player}, Вы не можете войти во время тех. работ!{newline}{newline}&7www.site.ru'
-    admin-list: # Список тех, кому можно войти (Добавить игрока - /mnt add <Ник>, нужно право masstontools.use)
+    admin-list: # Список тех, кому можно войти (Добавить игрока - /maintenance add <Ник>, нужно право masstontools.use)
         - Masston
     icon:
         enabled: true
