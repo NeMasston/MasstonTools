@@ -6,7 +6,7 @@
 
     <groupId>me.mstn</groupId>
     <artifactId>MasstonTools</artifactId>
-    <version>1.2b</version>
+    <version>1.3b</version>
 
     <repositories>
         <repository>
@@ -34,7 +34,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>me.mstn.MasstonTools.Main</mainClass>
+                            <mainClass>me.mstn.tools.MasstonToolsPlugin</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

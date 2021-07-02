@@ -1,16 +1,16 @@
-package me.mstn.MasstonTools;
+package me.mstn.tools;
 
-import me.mstn.MasstonTools.command.MaintenanceCommand;
-import me.mstn.MasstonTools.core.configuration.SimpleConfiguration;
-import me.mstn.MasstonTools.core.Maintenance;
-import me.mstn.MasstonTools.core.util.ProtocolUtil;
-import me.mstn.MasstonTools.listener.PluginEvents;
+import me.mstn.tools.command.MaintenanceCommand;
+import me.mstn.tools.common.configuration.SimpleConfiguration;
+import me.mstn.tools.common.Maintenance;
+import me.mstn.tools.common.util.ProtocolUtil;
+import me.mstn.tools.listener.PluginEvents;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 
 import java.io.File;
 
-public class Main extends Plugin {
+public class MasstonToolsPlugin extends Plugin {
 
     public static File PATH;
 
@@ -23,7 +23,7 @@ public class Main extends Plugin {
         simpleConfiguration = new SimpleConfiguration(this);
         simpleConfiguration.saveDefaultConfig();
 
-        simpleConfiguration.saveResource("old_version.png");
+        simpleConfiguration.saveResource("outdated.png");
         simpleConfiguration.saveResource("maintenance.png");
 
         configuration = simpleConfiguration.getConfig();
@@ -34,7 +34,7 @@ public class Main extends Plugin {
         getProxy().getPluginManager().registerListener(this, new PluginEvents());
         getProxy().getPluginManager().registerCommand(this, new MaintenanceCommand());
 
-        if (!ProtocolUtil.checkValidVersion(configuration.getString("old_versions.whitelist"))) {
+        if (!ProtocolUtil.checkValidVersion(configuration.getString("outdated.whitelist"))) {
             getLogger().severe("The version in the configuration is incorrect!");
         }
     }

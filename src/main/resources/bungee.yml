@@ -1,4 +1,4 @@
-main: me.mstn.MasstonTools.Main
-version: 1.2b
+main: me.mstn.tools.MasstonToolsPlugin
+version: 1.3b
 name: MasstonTools
 author: Masston

@@ -1,6 +1,6 @@
-package me.mstn.MasstonTools.core;
+package me.mstn.tools.common;
 
-import me.mstn.MasstonTools.Main;
+import me.mstn.tools.MasstonToolsPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,13 +60,13 @@ public class Maintenance {
     }
 
     private static void saveStatus() {
-        Main.getConfig().set("maintenance.enabled", enabled);
-        Main.getConfigurationManipulator().save();
+        MasstonToolsPlugin.getConfig().set("maintenance.enabled", enabled);
+        MasstonToolsPlugin.getConfigurationManipulator().save();
     }
 
     private static void saveList() {
-        Main.getConfig().set("maintenance.admin-list", admins);
-        Main.getConfigurationManipulator().save();
+        MasstonToolsPlugin.getConfig().set("maintenance.admin-list", admins);
+        MasstonToolsPlugin.getConfigurationManipulator().save();
     }
 
 }

@@ -1,7 +1,7 @@
-package me.mstn.MasstonTools.core.configuration;
+package me.mstn.tools.common.configuration;
 
 import com.google.common.io.ByteStreams;
-import me.mstn.MasstonTools.Main;
+import me.mstn.tools.MasstonToolsPlugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
@@ -15,10 +15,10 @@ public class SimpleConfiguration {
 
     private final String fileName = "config.yml";
 
-    private final Main plugin;
+    private final MasstonToolsPlugin plugin;
     private Configuration configuration;
 
-    public SimpleConfiguration(Main plugin) {
+    public SimpleConfiguration(MasstonToolsPlugin plugin) {
         this.plugin = plugin;
 
         make();
@@ -36,7 +36,7 @@ public class SimpleConfiguration {
 
     public void saveResource(String resourceName) {
         try {
-            Path configPath = Main.PATH.toPath().resolve(resourceName);
+            Path configPath = MasstonToolsPlugin.PATH.toPath().resolve(resourceName);
 
             if (Files.exists(configPath)) {
                 return;
@@ -52,14 +52,14 @@ public class SimpleConfiguration {
         try {
             ConfigurationProvider
                     .getProvider(YamlConfiguration.class)
-                    .save(configuration, new File(Main.PATH, fileName));
+                    .save(configuration, new File(MasstonToolsPlugin.PATH, fileName));
         } catch (IOException e) {
             throw new RuntimeException("Failed to save config file.", e);
         }
     }
 
     private void make() {
-        File directory = Main.PATH;
+        File directory = MasstonToolsPlugin.PATH;
         if (!directory.exists()) directory.mkdir();
     }
 
@@ -67,14 +67,14 @@ public class SimpleConfiguration {
         try {
             configuration = YamlConfiguration
                     .getProvider(YamlConfiguration.class)
-                    .load(Main.PATH.toPath().resolve(fileName).toFile());
+                    .load(MasstonToolsPlugin.PATH.toPath().resolve(fileName).toFile());
         } catch (IOException e) {
             throw new RuntimeException("Failed to reload config file.", e);
         }
     }
 
     private void load() {
-        File file = new File(Main.PATH, fileName);
+        File file = new File(MasstonToolsPlugin.PATH, fileName);
 
         if (!file.exists()) {
             try {

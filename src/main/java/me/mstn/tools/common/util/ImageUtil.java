@@ -1,6 +1,6 @@
-package me.mstn.MasstonTools.core.util;
+package me.mstn.tools.common.util;
 
-import me.mstn.MasstonTools.Main;
+import me.mstn.tools.MasstonToolsPlugin;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -11,7 +11,7 @@ public class ImageUtil {
 
     public static BufferedImage loadImage(String fileName) {
         BufferedImage img = null;
-        String pluginPath = Main.PATH.getAbsolutePath() + "/";
+        String pluginPath = MasstonToolsPlugin.PATH.getAbsolutePath() + "/";
 
         try {
             File file = new File(pluginPath + fileName);

@@ -1,4 +1,4 @@
-package me.mstn.MasstonTools.core.util;
+package me.mstn.tools.common.util;
 
 import net.md_5.bungee.protocol.ProtocolConstants;
 
