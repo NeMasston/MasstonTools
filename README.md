@@ -17,7 +17,7 @@
 3. Устанавливаемые иконки должны иметь размер 64x64 пикселя.  
 
 ### Конфигурация
-![Пример конфигурации плагина](https://mstn.me/images/configuration.png)
+![Пример конфигурации плагина](https://mstn.me/images/configuration_1_3b.png)
 
 ### Демонстрация работы
 ![Демонстрация работы плагина](https://mstn.me/images/example.jpg)
