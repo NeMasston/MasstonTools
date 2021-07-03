@@ -31,14 +31,22 @@ public class MaintenanceCommand extends Command {
             if (args.length == 1) {
                 String key = args[0].toLowerCase();
 
-                if (key.equals("вкл") || key.equals("on") || key.equals("включить") || key.equals("true")) {
+                if (
+                        key.equalsIgnoreCase("вкл")
+                        || key.equalsIgnoreCase("on")
+                        || key.equalsIgnoreCase("включить")
+                        || key.equalsIgnoreCase("true")
+                ) {
                     Maintenance.setEnabled(true);
-
                     commandSender.sendMessage(colored(messages.getString("enabled")));
                     return;
-                } else if (key.equals("выкл") || key.equals("off") || key.equals("выключить") || key.equals("false")) {
+                } else if (
+                        key.equalsIgnoreCase("выкл")
+                        || key.equalsIgnoreCase("off")
+                        || key.equalsIgnoreCase("выключить")
+                        || key.equalsIgnoreCase("false")
+                ) {
                     Maintenance.setEnabled(false);
-
                     commandSender.sendMessage(colored(messages.getString("disabled")));
                     return;
                 }
@@ -47,7 +55,7 @@ public class MaintenanceCommand extends Command {
             if (args.length == 2) {
                 String key = args[0].toLowerCase();
 
-                if (key.equals("add") || key.equals("добавить")) {
+                if (key.equalsIgnoreCase("add") || key.equalsIgnoreCase("добавить")) {
                     boolean addUser = Maintenance.addAdmin(args[1]);
 
                     if (!addUser) {
@@ -57,7 +65,11 @@ public class MaintenanceCommand extends Command {
 
                     commandSender.sendMessage(colored(messages.getString("added").replace("{player}", args[1])));
                     return;
-                } else if (key.equals("remove") || key.equals("убрать") || key.equals("удалить")) {
+                } else if (
+                        key.equalsIgnoreCase("remove")
+                        || key.equalsIgnoreCase("убрать")
+                        || key.equalsIgnoreCase("удалить")
+                ) {
                     boolean removeUser = Maintenance.removeAdmin(args[1]);
 
                     if (!removeUser) {

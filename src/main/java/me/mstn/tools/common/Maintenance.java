@@ -20,13 +20,7 @@ public class Maintenance {
     }
 
     public static boolean find(String name) {
-        for (String element : admins) {
-            if (name.equalsIgnoreCase(element)) {
-                return true;
-            }
-        }
-
-        return false;
+        return admins.contains(name);
     }
 
     public static boolean addAdmin(String name) {
